@@ -22,6 +22,7 @@ export default function App() {
   const [seaCellCount, setSeaCellCount] = useState(0);
   const [renderKey, setRenderKey] = useState(0);
   const [airdropMode, setAirdropMode] = useState(false);
+  const [flagMode, setFlagMode] = useState(false);
   const [missileTarget, setMissileTarget] = useState(null);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingText, setLoadingText] = useState('마스크 데이터 로딩...');
@@ -63,6 +64,7 @@ export default function App() {
     const newEngine = new MinesweeperEngine(seaMask, seaCellCount, difficulty);
     setEngine(newEngine);
     setAirdropMode(false);
+    setFlagMode(false);
     setMissileTarget(null);
     lastRewardRef.current = 0;
 
@@ -133,6 +135,16 @@ export default function App() {
       return;
     }
 
+    // 깃발 모드: 탭으로 깃발 배치
+    if (flagMode) {
+      const result = engine.toggleFlag(x, y);
+      if (result.type === 'flag') {
+        _syncStats(engine);
+        setRenderKey((k) => k + 1);
+      }
+      return;
+    }
+
     // 일반 셀 오픈
     const result = engine.openCell(x, y);
 
@@ -156,7 +168,7 @@ export default function App() {
     }
 
     setRenderKey((k) => k + 1);
-  }, [engine, airdropMode, state.airdropCount, actions, _syncStats]);
+  }, [engine, airdropMode, flagMode, state.airdropCount, actions, _syncStats]);
 
   // 셀 롱프레스 핸들러 (깃발)
   const handleCellLongPress = useCallback((x, y) => {
@@ -223,13 +235,24 @@ export default function App() {
     actions.resetGame();
   }, [actions]);
 
+  // 깃발 모드 토글
+  const handleFlagMode = useCallback(() => {
+    setFlagMode((prev) => {
+      if (!prev) setAirdropMode(false); // 상호 배제
+      return !prev;
+    });
+  }, []);
+
   // 에어드랍 모드 토글
   const handleAirdropMode = useCallback(() => {
     if (state.airdropCount <= 0) {
       actions.showToast('에어드랍이 없습니다', 'danger');
       return;
     }
-    setAirdropMode((prev) => !prev);
+    setAirdropMode((prev) => {
+      if (!prev) setFlagMode(false); // 상호 배제
+      return !prev;
+    });
     if (!airdropMode) {
       actions.showToast('맵에서 제거할 위치를 터치하세요', 'info');
     }
@@ -282,6 +305,8 @@ export default function App() {
             onPause={handlePause}
             onAirdropMode={handleAirdropMode}
             airdropMode={airdropMode}
+            onFlagMode={handleFlagMode}
+            flagMode={flagMode}
           />
 
           {/* 엔딩 연출 컨테이너 */}

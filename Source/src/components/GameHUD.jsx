@@ -10,6 +10,8 @@ export default function GameHUD({
   onPause,
   onAirdropMode,
   airdropMode,
+  onFlagMode,
+  flagMode,
 }) {
   const { state } = useGameState();
 
@@ -64,9 +66,22 @@ export default function GameHUD({
         </div>
       </div>
 
-      {/* 하단 액션 바 */}
       <div className="game-bottom-bar">
         <div className="bottom-actions">
+          {/* 깃발 모드 토글 */}
+          <button
+            className={`item-btn ${flagMode ? 'selected' : ''}`}
+            onClick={onFlagMode}
+            id="btn-flag-mode"
+            style={{
+              borderColor: flagMode ? 'var(--color-accent-warning)' : undefined,
+              background: flagMode ? 'rgba(255,184,0,0.15)' : undefined,
+            }}
+          >
+            <span className="item-btn-icon">🚩</span>
+            <span className="item-btn-label">{flagMode ? '깃발 ON' : '깃발'}</span>
+          </button>
+
           {/* 에어드랍 아이템 */}
           <button
             className={`item-btn ${airdropMode ? 'selected' : ''}`}
