@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+Source/node_modules/
+
+# Build output
+Source/dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+*.Zone.Identifier
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Antigravity / Gemini
+.gemini/
+*.Zone.Identifier
