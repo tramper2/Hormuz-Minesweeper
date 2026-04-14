@@ -81,17 +81,31 @@ export default function StartScreen({ onStart }) {
         </button>
 
         {/* 조작 안내 */}
-        <div style={{
+        <div className="glass-panel" style={{
+          padding: '16px',
           marginTop: '24px',
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '24px',
-          color: 'var(--color-text-muted)',
-          fontSize: '0.7rem',
+          maxWidth: '320px',
+          textAlign: 'left',
+          fontSize: '0.75rem',
         }}>
-          <div>👆 탭 = 오픈</div>
-          <div>👆💨 길게 = 깃발</div>
-          <div>🤏 핀치 = 줌</div>
+          <div style={{ marginBottom: '12px' }}>
+            <strong style={{ color: 'var(--color-text-primary)' }}>📱 모바일 조작</strong>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '4px', color: 'var(--color-text-secondary)' }}>
+              <div>👆 탭: 타일 열기</div>
+              <div>🚩 하단 버튼: 깃발 모드</div>
+              <div>👆💨 길게: 깃발 꽂기</div>
+              <div>🤏 핀치: 확대/축소</div>
+            </div>
+          </div>
+          <div>
+            <strong style={{ color: 'var(--color-text-primary)' }}>🖱️ 데스크탑 조작</strong>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '4px', color: 'var(--color-text-secondary)' }}>
+              <div>🖱️ 좌클릭: 타일 열기</div>
+              <div>🖱️ 우클릭: 깃발 꽂기</div>
+              <div>🖱️ 드래그: 지도 이동</div>
+              <div>🎡 휠: 확대/축소</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
