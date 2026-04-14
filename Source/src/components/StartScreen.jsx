@@ -109,10 +109,11 @@ export default function StartScreen({ onStart }) {
         </div>
 
         {/* 방문자 카운터 */}
-        <div style={{ marginTop: '32px', opacity: 0.6 }}>
+        <div style={{ marginTop: '32px', opacity: 0.8 }}>
           <img 
-            src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ftramper2.github.io%2FHormuz-Minesweeper&count_bg=%2300E68A&title_bg=%23203447&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=false" 
+            src="https://hits.dwyl.com/tramper2/Hormuz-Minesweeper.svg" 
             alt="Visitors"
+            style={{ height: '20px' }}
           />
         </div>
       </div>
