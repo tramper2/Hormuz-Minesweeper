@@ -59,7 +59,7 @@ export default function GridRenderer({
     app.stage.addChild(gridContainer);
 
     // 배경 맵 이미지 로드
-    const bgTexture = PIXI.Texture.from('/images/hormumap.jpg');
+    const bgTexture = PIXI.Texture.from(`${import.meta.env.BASE_URL}images/hormumap.jpg`);
     const bgSprite = new PIXI.Sprite(bgTexture);
     bgSprite.width = WORLD_SIZE;
     bgSprite.height = WORLD_SIZE;

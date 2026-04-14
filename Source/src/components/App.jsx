@@ -38,7 +38,7 @@ export default function App() {
         setLoadingText('해협 지형 분석 중...');
         setLoadingProgress(30);
 
-        const { grid, seaCellCount: count } = await loadMask('/images/hormumaskj.png');
+        const { grid, seaCellCount: count } = await loadMask(`${import.meta.env.BASE_URL}images/hormumaskj.png`);
         setSeaMask(grid);
         setSeaCellCount(count);
 
