@@ -97,3 +97,6 @@ npm run dev
 ## 📄 License
 
 MIT
+
+## 게임 해볼수 있는 링크
+https://tramper2.github.io/Hormuz-Minesweeper/
